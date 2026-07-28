@@ -76,16 +76,16 @@ public class MoneyOpretion {
         }
     }
 
-    public void transferFunds(String senderAccNo, String receiverAccNo, double amount) {
-        String checkBalanceSql = "SELECT balance FROM account WHERE account_no = ?";
-        String deductSql = "UPDATE account SET balance = balance - ? WHERE account_no = ?";
+    public void transferFunds(int senderAccNo, String receiverAccNo, double amount) {
+        String checkBalanceSql = "SELECT balance FROM account WHERE user_id = ?";
+        String deductSql = "UPDATE account SET balance = balance - ? WHERE user_id = ?";
         String addSql = "UPDATE account SET balance = balance + ? WHERE account_no = ?";
         Connection con=null;
         try {
             con = DatabaseConnection.getconnection();
             con.setAutoCommit(false);
             try (PreparedStatement checkPs = con.prepareStatement(checkBalanceSql)) {
-                checkPs.setString(1, senderAccNo);
+                checkPs.setInt(1, senderAccNo);
                 ResultSet rs = checkPs.executeQuery();
                 if (!rs.next()) {
                     System.out.println(" Sender account does not exist.");
@@ -101,7 +101,7 @@ public class MoneyOpretion {
             }
             try (PreparedStatement deductPs = con.prepareStatement(deductSql)) {
                 deductPs.setDouble(1, amount);
-                deductPs.setString(2, senderAccNo);
+                deductPs.setInt(2, senderAccNo);
                 deductPs.executeUpdate();
             }
 
@@ -117,9 +117,8 @@ public class MoneyOpretion {
                 con.rollback();
                 return;
             }
-
             con.commit();
-            System.out.println("Transfer Successful" + amount + " transferred from " + senderAccNo + " to " + receiverAccNo);
+            System.out.println("Transfer Successful " + amount + " to " + receiverAccNo);
 
         } catch (SQLException e) {
             System.out.println("transaction failed due to database error: " + e.getMessage());

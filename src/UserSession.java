@@ -3,10 +3,12 @@ public class UserSession {
     private String UserName;
     private String Role;
 
+
     public UserSession(int userId, String userName, String role) {
         UserId = userId;
         UserName = userName;
         Role = role;
+
     }
 
     public int getUserId() {

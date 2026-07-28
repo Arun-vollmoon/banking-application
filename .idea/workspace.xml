@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a6b9766-e7f0-4638-860b-8e45d2322e42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AccountValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TransactionValidation.java" afterDir="false" />
+    <list default="true" id="3a6b9766-e7f0-4638-860b-8e45d2322e42" name="Changes" comment="update commit">
+      <change afterPath="$PROJECT_DIR$/src/UserProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deposit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FundTransfer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MoneyOpretion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MoneyOpretion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UserSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserSession.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +72,15 @@
       <option name="presentableId" value="Default" />
       <updated>1784953719410</updated>
     </task>
+    <task id="LOCAL-00001" summary="update commit">
+      <option name="closed" value="true" />
+      <created>1785206376798</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1785206376798</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,5 +93,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="update commit" />
   </component>
 </project>

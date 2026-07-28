@@ -15,6 +15,7 @@ public class Main {
         UserService userService= new UserService();
         AccountCreation accountCreation=new AccountCreation();
         MoneyOpretion moneyOpretion=new MoneyOpretion();
+        UserProfile userProfile=new UserProfile();
         UserSession session = null;
         //entrance
        while (true) {
@@ -141,7 +142,8 @@ public class Main {
                        3. Fund Transfer
                        4. Check Balance
                        5. Change Password
-                       6. Logout
+                       6. view User details
+                       7. Logout
                         Enter choice:""");
 
                int choice = sc.nextInt();
@@ -152,8 +154,8 @@ public class Main {
                        double amount;
                        do {
                            System.out.print("Enter amount to deposit: ");
-                          amount= sc.nextDouble();
-                       }while (!TransactionValidation.validateAmount(amount));
+                           amount = sc.nextDouble();
+                       } while (!TransactionValidation.validateAmount(amount));
 
                        moneyOpretion.depositmoney(session.getUserId(), amount);
                        break;
@@ -163,20 +165,25 @@ public class Main {
                        double amountWithdrow;
                        do {
                            System.out.print("Enter amount to deposit: ");
-                           amountWithdrow= sc.nextDouble();
-                       }while (!TransactionValidation.validateAmount(amountWithdrow));
+                           amountWithdrow = sc.nextDouble();
+                       } while (!TransactionValidation.validateAmount(amountWithdrow));
                        moneyOpretion.Withdraw(session.getUserId(), amountWithdrow);
                        break;
                    case 3:
 //                       fund trancefer
                        System.out.println("-------Fund trancfer--------");
-                       System.out.print("Enter your account number: ");
-                       String senderAcc = sc.next();
-                       System.out.print("Enter receiver account number: ");
-                       String receiverAcc = sc.next();
-                       System.out.print("Enter transfer amount: ");
-                       double amount1 = sc.nextDouble();
-                       moneyOpretion.transferFunds(senderAcc, receiverAcc, amount1);
+                       System.out.print("enter account number(Which account you send): ");
+                       String receiverAcc;
+                       do {
+                           receiverAcc = sc.next();
+                       } while (!AccountValidation.validateAccountNo(receiverAcc));
+
+                       double amounttransfer;
+                       do {
+                           System.out.print("Enter how mush you transfer: ");
+                           amounttransfer = sc.nextDouble();
+                       } while (!TransactionValidation.validateAmount(amounttransfer));
+                       moneyOpretion.transferFunds(session.getUserId(), receiverAcc, amounttransfer);
                        break;
                    case 4:
 //                       check balance
@@ -184,15 +191,23 @@ public class Main {
                        moneyOpretion.checkbalance(session.getUserId());
                        break;
 
-
                    case 5:
 //                       change password
                        System.out.println("-------Change password--------");
-                       System.out.print("Enter new password: ");
-                       String newPass = sc.next();
+                       String newPass;
+                       do {
+                           System.out.print("Enter new password: ");
+                            newPass = sc.next();
+                       }while (!UserValidation.validatePassword(newPass));
+
                        userService.PasswordChange(session.getUserId(), newPass);
                        break;
                    case 6:
+                       System.out.println("-----------User profile------------");
+                       userProfile.UserProfile(session.getUserId());
+                       break;
+
+                   case 7:
 //                       logout
                        System.out.println("-------logout--------");
                        userService.logout(session.getUserId());

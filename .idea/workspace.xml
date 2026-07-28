@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a6b9766-e7f0-4638-860b-8e45d2322e42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LoginInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MoneyOpretion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UserValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AccountValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TransactionValidation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer_registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database_connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Deposit.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account_creation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AccountCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/changePassword.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/deposit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deposit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fund_transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FundTransfer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MoneyOpretion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MoneyOpretion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

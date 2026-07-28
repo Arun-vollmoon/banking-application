@@ -34,33 +34,21 @@ public class Main {
                        do {
                            System.out.print("Enter Name: ");
                            name = sc.next().trim();
-                           if (!UserValidation.ValidateName(name)) {
-                               System.out.print("enter valid name:");
-                           }
-                       } while (!UserValidation.validateDOB(name));
+                       } while (!UserValidation.ValidateName(name));
                        String dob;
                        do {
                            System.out.print("Enter DOB (yyyy-MM-dd): ");
                            dob = sc.next();
-                           if (!UserValidation.validateDOB(dob)) {
-                               System.out.print("Enter valid DOB:");
-                           }
                        } while (!UserValidation.validateDOB(dob));
                        String password;
                        do {
                            System.out.print("Enter password: ");
                            password = sc.next();
-                           if (!UserValidation.validatePassword(password)) {
-                               System.out.print("Enter valid DOB:");
-                           }
                        } while (!UserValidation.validatePassword(password));
                        String role;
                        do {
                            System.out.print("Enter role (user/admin/org_admin): ");
                            role = sc.next();
-                           if (!UserValidation.validateRole(role)){
-                               System.out.println("Enter valid Role:");
-                           }
                        } while (!UserValidation.validateRole(role));
 
                        registration.Register(name, dob, password, role);
@@ -89,7 +77,7 @@ public class Main {
                        1. Create Customer Account
                        2. Change Password
                        3. delete Account
-                       3. Logout
+                       4. Logout
                        Enter choice: """);
 
                int choice = sc.nextInt();
@@ -98,25 +86,39 @@ public class Main {
                    case 1:
 //                    Account creation
                        System.out.println("-------Account creation--------");
-                       System.out.print("Enter account number: ");
-                       String accNum = sc.next();
-                       System.out.print("Enter initial balance: ");
-                       double balance = sc.nextDouble();
+                       String accNum;
+                       do {
+                           System.out.print("Enter account number: ");
+                           accNum = sc.next();
+                       } while (!AccountValidation.validateAccountNo(accNum));
+                       double balance;
+                       do {
+                           System.out.print("Enter initial balance: ");
+                           balance = sc.nextDouble();
+                       } while (!TransactionValidation.validateAmount(balance));
+
                        System.out.print("Enter customer user ID: ");
                        int userId = sc.nextInt();
+
                        accountCreation.createAccount(session.getRole(), accNum, balance, userId);
                        break;
                    case 2:
 //                    change password for admin and org_admin
                        System.out.println("-------Change password--------");
-                       System.out.print("Enter new password: ");
-                       String newPass = sc.next();
+                       String newPass;
+                       do {
+                           System.out.print("Enter new password: ");
+                          newPass = sc.next();
+                       }while (!UserValidation.validatePassword(newPass));
                        userService.PasswordChange(session.getUserId(), newPass);
-                       break;
+                            break;
                    case 3:
                        System.out.println("-------Delete account--------");
-                       System.out.print("Enter your account number: ");
-                       String account = sc.next();
+                       String account ;
+                       do {
+                           System.out.print("Enter account number: ");
+                           account = sc.next();
+                       } while (!AccountValidation.validateAccountNo(account));
                        accountCreation.deleteAccount(account);
                        break;
                    case 4:
@@ -147,15 +149,22 @@ public class Main {
                    case 1:
 //               amount deposit
                        System.out.println("-------Deposit--------");
-                       System.out.print("Enter amount to deposit: ");
-                       double amount = sc.nextDouble();
+                       double amount;
+                       do {
+                           System.out.print("Enter amount to deposit: ");
+                          amount= sc.nextDouble();
+                       }while (!TransactionValidation.validateAmount(amount));
+
                        moneyOpretion.depositmoney(session.getUserId(), amount);
                        break;
                    case 2:
 //               amount withdraw
                        System.out.println("-------Withdraw--------");
-                       System.out.print("Enter amount to deposit: ");
-                       double amountWithdrow = sc.nextDouble();
+                       double amountWithdrow;
+                       do {
+                           System.out.print("Enter amount to deposit: ");
+                           amountWithdrow= sc.nextDouble();
+                       }while (!TransactionValidation.validateAmount(amountWithdrow));
                        moneyOpretion.Withdraw(session.getUserId(), amountWithdrow);
                        break;
                    case 3:
@@ -172,20 +181,18 @@ public class Main {
                    case 4:
 //                       check balance
                        System.out.println("-------Check balance--------");
-                       System.out.print("Enter your account number: ");
-                       String accNo = sc.next();
-                       moneyOpretion.checkbalance(accNo);
+                       moneyOpretion.checkbalance(session.getUserId());
                        break;
 
 
-                   case 6:
+                   case 5:
 //                       change password
                        System.out.println("-------Change password--------");
                        System.out.print("Enter new password: ");
                        String newPass = sc.next();
                        userService.PasswordChange(session.getUserId(), newPass);
                        break;
-                   case 7:
+                   case 6:
 //                       logout
                        System.out.println("-------logout--------");
                        userService.logout(session.getUserId());

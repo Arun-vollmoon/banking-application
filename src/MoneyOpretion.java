@@ -4,22 +4,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MoneyOpretion {
-    public void depositmoney(int accNumber, double depositAmount) {
+    public void depositmoney(int user_id, double depositAmount) {
 
-        String uSql = "UPDATE account SET balance = balance + ? WHERE account_id = ?";
-        String sSql = "SELECT balance FROM account WHERE account_id = ?";
+        String uSql = "UPDATE account SET balance = balance + ? WHERE user_id = ?";
+        String sSql = "SELECT balance FROM account WHERE user_id = ?";
 
         try (Connection con = DatabaseConnection.getconnection();
              PreparedStatement uPs = con.prepareStatement(uSql)) {
 
             uPs.setDouble(1, depositAmount);
-            uPs.setInt(2, accNumber);
+            uPs.setInt(2, user_id);
 
             int rows = uPs.executeUpdate();
 
             if (rows > 0) {
                 try (PreparedStatement sPs = con.prepareStatement(sSql)) {
-                    sPs.setInt(1, accNumber);
+                    sPs.setInt(1, user_id);
                     try (ResultSet rs = sPs.executeQuery()) {
                         if (rs.next()) {
                             double nBalance = rs.getDouble("balance");
@@ -30,7 +30,7 @@ public class MoneyOpretion {
                     }
                 }
             } else {
-                System.out.println("Deposit failed: Account ID " + accNumber + " not found.");
+                System.out.println("Deposit failed: Account ID " + user_id + " not found.");
             }
 
         } catch (SQLException e) {
@@ -40,22 +40,22 @@ public class MoneyOpretion {
         }
     }
 
-    public void Withdraw(int accNumber, double WithdrawAmount) {
+    public void Withdraw(int user_id, double WithdrawAmount) {
 
-        String uSql = "UPDATE account SET balance = balance - ? WHERE account_id = ?";
-        String sSql = "SELECT balance FROM account WHERE account_id = ?";
+        String uSql = "UPDATE account SET balance = balance - ? WHERE user_id = ?";
+        String sSql = "SELECT balance FROM account WHERE user_id = ?";
 
         try (Connection con = DatabaseConnection.getconnection();
              PreparedStatement uPs = con.prepareStatement(uSql)) {
 
             uPs.setDouble(1, WithdrawAmount);
-            uPs.setInt(2, accNumber);
+            uPs.setInt(2, user_id);
 
             int rows = uPs.executeUpdate();
 
             if (rows > 0) {
                 try (PreparedStatement sPs = con.prepareStatement(sSql)) {
-                    sPs.setInt(1, accNumber);
+                    sPs.setInt(1, user_id);
                     try (ResultSet rs = sPs.executeQuery()) {
                         if (rs.next()) {
                             double nBalance = rs.getDouble("balance");
@@ -66,7 +66,7 @@ public class MoneyOpretion {
                     }
                 }
             } else {
-                System.out.println("Withdraw failed: Account ID " + accNumber + " not found.");
+                System.out.println("Withdraw failed: Account ID " + user_id + " not found.");
             }
 
         } catch (SQLException e) {
@@ -144,14 +144,13 @@ public class MoneyOpretion {
             }
         }
     }
-    void checkbalance(String account_no) throws Exception {
-        String checkBalanceSql = "SELECT balance FROM account WHERE account_no = ?";
+    void checkbalance(int user_id) throws Exception {
+        String checkBalanceSql = "SELECT balance FROM account WHERE user_id = ?";
 
         try (Connection con = DatabaseConnection.getconnection();
              PreparedStatement uPs = con.prepareStatement(checkBalanceSql)) {
-            uPs.setString(1,account_no);
+            uPs.setInt(1,user_id);
             ResultSet rs =uPs.executeQuery();
-
             if (!rs.next()) {
                 System.out.println(" this account does not exist.");
                 con.rollback();
